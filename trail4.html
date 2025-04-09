@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup with Image Password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Signup</h2>
+    <form id="signupForm" action="train4.php" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="first_name" id="firstName" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <label for="phone">Phone Number:</label>
+        <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" required>
+        
+        <label for="category1">Select Category 1:</label>
+        <select id="category1" name="category1" onchange="updateCategory2(); loadImages('category1', 'images1')" required>
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        <div id="images1" class="image-container"></div>
+        <div id="grid1" class="grid-container" style="display: none;"></div>
+        <input type="hidden" id="imageId1" name="imageId1">
+        <input type="hidden" id="cuePoints1" name="cuePoints1">
+
+        <label for="category2">Select Category 2:</label>
+        <select id="category2" name="category2" onchange="loadImages('category2', 'images2')" required>
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        <div id="images2" class="image-container"></div>
+        <div id="grid2" class="grid-container" style="display: none;"></div>
+        <input type="hidden" id="imageId2" name="imageId2">
+        <input type="hidden" id="cuePoints2" name="cuePoints2">
+    
+        <button type="button" onclick="submitForm()">Signup</button>
+    </form>
+    
+    <script>
+        function validateForm() {
+            let firstName = document.getElementById("firstName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let category1 = document.getElementById("category1").value;
+            let category2 = document.getElementById("category2").value;
+
+            if (!firstName || !email || !phone) {
+                alert("All fields are required!");
+                return false;
+            }
+
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert("Invalid email format!");
+                return false;
+            }
+
+            let phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be exactly 10 digits!");
+                return false;
+            }
+
+            if (category1 === "" || category2 === "") {
+                alert("Please select both categories!");
+                return false;
+            }
+
+            return true;
+        }
+        function loadImages(categoryId, containerId) {
+            const category = document.getElementById(categoryId).value;
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";
+            if (!category) return;
+            for (let i = 1; i <= 9; i++) {
+                const img = document.createElement("img");
+                img.src = `images/${category}/${category}${i}.jpg`;
+                img.onerror = () => img.style.display = "none";
+                img.onclick = () => divideIntoGrid(img, containerId);
+                container.appendChild(img);
+            }
+        }
+
+        function divideIntoGrid(img, containerId) {
+            const container = document.getElementById(containerId);
+            const gridContainer = document.getElementById(containerId.replace("images", "grid"));
+
+            container.style.display = "none";
+            gridContainer.style.display = "grid";
+            gridContainer.innerHTML = "";
+
+            let imageId = img.src.split('/').pop().split('.')[0];
+
+            if (containerId === "images1") {
+                document.getElementById("imageId1").value = imageId;
+            } else if (containerId === "images2") {
+                document.getElementById("imageId2").value = imageId;
+            }
+
+            for (let i = 0; i < 9; i++) {
+                const gridBox = document.createElement("div");
+                gridBox.classList.add("grid-box");
+                const row = Math.floor(i / 3);
+                const col = i % 3;
+                gridBox.style.backgroundImage = `url('${img.src}')`;
+                gridBox.style.backgroundPosition = `${-col * 70}px ${-row * 70}px`;
+                gridBox.onclick = () => selectGridBox(gridBox, gridContainer.id);
+                gridContainer.appendChild(gridBox);
+            }
+        }
+
+        function selectGridBox(gridBox, gridId) {
+            let selectedBoxes = document.querySelectorAll(`#${gridId} .selected`);
+            selectedBoxes.forEach(box => box.classList.remove("selected"));
+            
+            gridBox.classList.add("selected");
+
+            let selectedIndex = Array.from(gridBox.parentElement.children).indexOf(gridBox) + 1;
+
+            if (gridId === "grid1") {
+                document.getElementById("cuePoints1").value = selectedIndex;
+            } else if (gridId === "grid2") {
+                document.getElementById("cuePoints2").value = selectedIndex;
+            }
+        }
+
+        function updateCategory2() {
+            const category1 = document.getElementById("category1").value;
+            const category2 = document.getElementById("category2");
+
+            Array.from(category2.options).forEach(option => {
+                option.disabled = option.value === category1;
+            });
+            category2.value = "";
+            document.getElementById("images2").innerHTML = "";
+        }
+
+        function submitForm() {
+            document.getElementById("signupForm").submit();
+        }
+    </script>
+</body>
+</html>

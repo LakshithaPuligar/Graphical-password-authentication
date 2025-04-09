@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Password Authentication</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 92%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #5D5FEF;
+            text-decoration: none;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #5D5FEF;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #5D5FEF, #8E8FFD);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 650px;
+            margin: 10px auto;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .section img {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .advantages, .challenges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #5D5FEF;
+            color: white;
+        }
+        .extra-security {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navigation">
+        <a href="#" class="logo">GPA Security</a>
+        <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#methodology">How it works</a></li>
+            <li><a href="#advantages">Advantages</a></li>
+            <li><a href="#security">security</a></li>
+            <li><a href="trail4.html" >Signup</a></li>
+            <li><a href="login.html" >Login</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Graphical Password Authentication</h1>
+    <p>Secure your accounts with intuitive graphical passwords. A smarter way to protect your data.</p>
+</section>
+
+<section id="about" class="section">
+    <h2>What is Graphical Password Authentication?</h2>
+    <p>A security system where users use images as passwords instead of traditional text passwords, enhancing security and usability
+        providing a secure alternative.(GPA) is a security method that replaces traditional text-based passwords with images, patterns,
+        or graphical elements. This technique enhances security by reducing vulnerabilities to brute-force and dictionary attacks while
+        improving usability through visual memory. GPA is widely used in banking, mobile security, and enterprise systems, offering protection
+        against keyloggers and phishing attacks..</p>
+
+</section>
+
+<section id="methodology" class="section">
+    <h2>How It Works</h2>
+    <p>Users select a sequence of images as their password, clicking on specific points in a 3x3 grid.</p>
+    <img src="Picture1.png" alt="Graphical Password Selection">
+</section>
+
+<section id="advantages" class="section">
+    <h2>Advantages</h2>
+    <div class="advantages">
+        <div class="card">🛡 Harder to guess than text-based passwords.</div>
+        <div class="card">🚀 More resistant to brute force and phishing attacks.</div>
+        <div class="card">🧠 Easier for users to remember.</div>
+        <div class="card">🔒 More secure against keyloggers.</div>
+    </div>
+</section>
+
+<section id="security" class="section">
+    <h2>Security Comparison</h2>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Text Passwords</th>
+            <th>Graphical Passwords</th>
+        </tr>
+        <tr>
+            <td>Guessability</td>
+            <td>High</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>Brute-Force Safety</td>
+            <td>Weak</td>
+            <td>Strong</td>
+        </tr>
+        <tr>
+            <td>Memorability</td>
+            <td>Hard</td>
+            <td>Easy</td>
+        </tr>
+    </table>
+</section>
+
+
+<section id="extra-security" class="section">
+    <h2>Extra-security</h2>
+    <div class="extra-security">
+        <div class="card">🔀 Randomized image grids to prevent pattern recognition.</div>
+        <div class="card">⏳ Time-based session expiration</div>
+        <div class="card">👀 Prevents shoulder-surfing attacks.</div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3"></script>
+<script>
+    document.querySelectorAll('.nav-list a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    function navigateTo(url) {
+        window.location.href = url; // Redirects to the specified page
+    }
+   
+    function launchConfetti() {
+        var duration = 3 * 1000;
+        var end = Date.now() + duration;
+
+        (function frame() {
+            confetti({
+                particleCount: 7,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            confetti({
+                particleCount: 7,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        })();
+    }
+
+    // Check both cases: signup OR verification
+    if (localStorage.getItem("signupSuccess") === "true" || localStorage.getItem("verificationSuccess") === "true") {
+        launchConfetti();
+
+        // Remove both flags after confetti
+        setTimeout(() => {
+            localStorage.removeItem("signupSuccess");
+            localStorage.removeItem("verificationSuccess");
+        }, 3000);
+    }
+
+</script>
+
+</body>
+</html>

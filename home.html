@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Password Authentication</title>
+    <style>
+        /* Apply a gradient background with a glowing effect */
+        body {
+            background: linear-gradient(45deg, #09001d, #1a0136, #3a005e);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 8px #ff00ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            text-shadow: 0 0 15px #ff00ff, 0 0 30px #8a2be2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        /* Neon Button */
+        .btn {
+            background-color: #ff00ff;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #d400d4;
+            box-shadow: 0 0 15px #ff00ff, 0 0 30px #8a2be2;
+        }
+
+        /* Features Section */
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        .section h2 {
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        /* Steps Section */
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .step-box h3 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Features</a>
+        <a href="login.html">Login</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Graphical Password Authentication</h1>
+        <p>Secure login using image-based authentication</p>
+        <button class="btn" onclick="window.location.href='trail4.html'">Get Started</button>
+
+    </div>
+
+    <!-- Features Section -->
+    <div class="section">
+        <h2>Why Use Graphical Password Authentication?</h2>
+        <p>✅ More secure than traditional passwords</p>
+        <p>✅ Harder to guess but easy to remember</p>
+        <p>✅ Protects against keyloggers and phishing</p>
+    </div>
+
+    <!-- 3 Easy Steps Section -->
+    <h2>3 Easy Steps to Authenticate</h2>
+    <div class="steps">
+        <div class="step-box">
+            <h3>1. Select Category</h3>
+            <p>Choose a category of images you are familiar with.</p>
+        </div>
+        <div class="step-box">
+            <h3>2. Select the Right Image</h3>
+            <p>Identify and select the correct image from the given options.</p>
+        </div>
+        <div class="step-box">
+            <h3>3. Select the Cued Point</h3>
+            <p>Click the correct point on the image to complete authentication.</p>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="why-us">
+        <h2>Why Choose Us?</h2>
+        <p>We provide a highly secure and user-friendly authentication system using graphical passwords.</p>
+        <p>Our technology ensures better protection against brute-force attacks and unauthorized access.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Graphical Password Authentication. All Rights Reserved.</p>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3"></script>
+
+<script>
+        // Check if the user just signed up
+        if (localStorage.getItem("signupSuccess") === "true") {
+            // Trigger confetti animation
+            function launchConfetti() {
+                var duration = 3 * 1000;  // 3 seconds
+                var end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 7,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+                    confetti({
+                        particleCount: 7,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                })();
+            }
+
+            launchConfetti();
+
+            // Remove flag so animation doesn't play again
+            setTimeout(() => {
+                localStorage.removeItem("signupSuccess");
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup with Image Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .image-container img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+        .image-container img.selected {
+            border: 2px solid blue;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px; /* Reduced gap for compact design */
+            margin-top: 10px;
+        }
+        .grid-box {
+            width: 70px;
+            height: 70px;
+            background-size: 210px 210px;
+            background-repeat: no-repeat;
+            border: 2px solid #ccc;
+            cursor: pointer;
+        }
+        .grid-box.selected {
+            border: 3px solid red;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h2>Signup</h2>
+    <form id="signupForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        
+        <label for="category1">Select Category 1:</label>
+        <select id="category1" onchange="updateCategory2(); loadImages('category1', 'images1')">
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        <div id="images1" class="image-container"></div>
+        <div id="grid1" class="grid-container" style="display: none;"></div>
+    
+        <label for="category2">Select Category 2:</label>
+        <select id="category2" onchange="loadImages('category2', 'images2')">
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        <div id="images2" class="image-container"></div>
+        <div id="grid2" class="grid-container" style="display: none;"></div>
+    
+        <button type="button" onclick="submitForm()">Signup</button>
+    </form>
+    
+    <script>
+        function loadImages(categoryId, containerId) {
+            const category = document.getElementById(categoryId).value;
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";
+            if (!category) return;
+            for (let i = 1; i <= 9; i++) {
+                const img = document.createElement("img");
+                img.src = `images/${category}/${category}${i}.jpg`;
+                img.onerror = () => img.style.display = "none";
+                img.onclick = () => divideIntoGrid(img, containerId);
+                container.appendChild(img);
+            }
+        }
+
+        function divideIntoGrid(img, containerId) {
+            const container = document.getElementById(containerId);
+            const gridContainer = document.getElementById(containerId.replace("images", "grid"));
+            container.style.display = "none";
+            gridContainer.style.display = "grid";
+            gridContainer.innerHTML = "";
+            for (let i = 0; i < 9; i++) {
+                const gridBox = document.createElement("div");
+                gridBox.classList.add("grid-box");
+                const row = Math.floor(i / 3);
+                const col = i % 3;
+                gridBox.style.backgroundImage = `url('${img.src}')`;
+                gridBox.style.backgroundPosition = `${-col * 70}px ${-row * 70}px`;
+                gridBox.onclick = () => selectGridBox(gridBox);
+                gridContainer.appendChild(gridBox);
+            }
+        }
+
+        function selectGridBox(gridBox) {
+            document.querySelectorAll(".grid-box").forEach(box => box.classList.remove("selected"));
+            gridBox.classList.add("selected");
+        }
+
+        function updateCategory2() {
+            const category1 = document.getElementById("category1").value;
+            const category2 = document.getElementById("category2");
+
+            Array.from(category2.options).forEach(option => {
+                option.disabled = option.value === category1;
+            });
+            category2.value = "";
+            document.getElementById("images2").innerHTML = "";
+        }
+
+        function submitForm() {
+            alert("Signup successful!");
+        }
+    </script>
+</body>
+</html>  

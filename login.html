@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm" action="login.php" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <label for="category1">Select Category 1:</label>
+        <select id="category1" name="category1" required>
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        
+        <label for="category2">Select Category 2:</label>
+        <select id="category2" name="category2" required>
+            <option value="">--Select--</option>
+            <option value="animals">Animals</option>
+            <option value="cars">Cars</option>
+            <option value="fruits">Fruits</option>
+            <option value="landscapes">Landscapes</option>
+        </select>
+        
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
